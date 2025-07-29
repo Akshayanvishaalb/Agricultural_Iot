@@ -18,8 +18,8 @@ jobs:
 
       - name: Replace Firebase Placeholders in index.html
         run: |
-          sed -i "s|FIRE_BASE_API_KEY|${{ secrets.FIREBASE_API_KEY }}|" index.html
-          sed -i "s|MESSAGE_ID|${{ secrets.FIREBASE_MESSAGING_SENDER_ID }}|" index.html
+          sed -i "s|FIRE_BASE_API_KEY|${{ secrets.FIRE_BASE_API_KEY }}|" index.html
+          sed -i "s|MESSAGE_ID|${{ secrets.MESSAGE_ID }}|" index.html
           sed -i "s|FIREBASE_APP_ID|${{ secrets.FIREBASE_APP_ID }}|" index.html
           sed -i "s|FIREBASE_MEASUREMENT_ID|${{ secrets.FIREBASE_MEASUREMENT_ID }}|" index.html
 
