@@ -16,15 +16,17 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Replace Firebase Placeholders in index.html
+      - name: Replace Firebase Placeholders in All HTML Files
         run: |
-          sed -i "s|FIRE_BASE_API_KEY|${{ secrets.FIRE_BASE_API_KEY }}|" index.html
-          sed -i "s|MESSAGE_ID|${{ secrets.MESSAGE_ID }}|" index.html
-          sed -i "s|FIREBASE_APP_ID|${{ secrets.FIREBASE_APP_ID }}|" index.html
-          sed -i "s|FIREBASE_MEASUREMENT_ID|${{ secrets.FIREBASE_MEASUREMENT_ID }}|" index.html
+          for file in *.html; do
+            sed -i "s|FIRE_BASE_API_KEY|${{ secrets.FIRE_BASE_API_KEY }}|" "$file"
+            sed -i "s|MESSAGE_ID|${{ secrets.MESSAGE_ID }}|" "$file"
+            sed -i "s|FIREBASE_APP_ID|${{ secrets.FIREBASE_APP_ID }}|" "$file"
+            sed -i "s|FIREBASE_MEASUREMENT_ID|${{ secrets.FIREBASE_MEASUREMENT_ID }}|" "$file"
+          done
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }} # ✅ default token
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: .
